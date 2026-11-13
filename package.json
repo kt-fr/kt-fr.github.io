@@ -7,9 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "node scripts/check.mjs",
-    "assets:photos": "python3 scripts/prepare-photo-props.py",
-    "assets:curated": "python3 scripts/prepare-curated-art.py"
+    "check": "node scripts/check.mjs"
   },
   "dependencies": {
     "astro": "^7.4.10"
