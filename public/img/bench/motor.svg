@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 180">
+ <defs>
+  <linearGradient id="metal" x2="0" y2="1"><stop stop-color="#565858"/><stop offset=".18" stop-color="#d5d8d6"/><stop offset=".4" stop-color="#9dabae"/><stop offset=".56" stop-color="#e3e4de"/><stop offset="1" stop-color="#646c70"/></linearGradient>
+  <linearGradient id="gear" x2="0" y2="1"><stop stop-color="#c5a76b"/><stop offset=".4" stop-color="#f5dea0"/><stop offset="1" stop-color="#a08a53"/></linearGradient>
+ </defs>
+ <path d="M26 130C-5 122 18 73 2 49" fill="none" stroke="#a54336" stroke-width="4"/>
+ <path d="M30 135C-2 159 7 169 47 175" fill="none" stroke="#25292b" stroke-width="4"/>
+ <g transform="rotate(-12 130 90)">
+  <path d="M36 61L51 48H139L160 63V120L139 135H51L36 121Z" fill="url(#metal)" stroke="#626868" stroke-width="2"/>
+  <ellipse cx="46" cy="93" rx="17" ry="38" fill="#6a7274"/>
+  <ellipse cx="48" cy="93" rx="12" ry="32" fill="#b2b9b7"/>
+  <path d="M75 57H130M75 127H130" stroke="#f6f6e7" opacity=".65" stroke-width="2"/>
+  <path d="M83 72H104V82H83zM115 72H136V82H115zM83 106H104V116H83zM115 106H136V116H115z" fill="#353b3d"/>
+  <path d="M141 55H190L209 73V119L191 137H141Z" fill="url(#gear)" stroke="#857751" stroke-width="2"/>
+  <ellipse cx="190" cy="96" rx="26" ry="36" fill="#c2ac72" stroke="#7f744f"/>
+  <circle cx="190" cy="96" r="17" fill="url(#metal)" stroke="#777"/>
+  <path d="M190 89H245V103H190Z" fill="url(#metal)" stroke="#717b7b"/>
+  <path d="M228 89H244V93H228" fill="#e3e5df"/>
+  <g fill="#5e5a43"><circle cx="151" cy="65" r="3"/><circle cx="151" cy="125" r="3"/><circle cx="196" cy="68" r="3"/><circle cx="196" cy="125" r="3"/></g>
+  <rect x="26" y="77" width="9" height="8" fill="#c7a566"/><rect x="26" y="108" width="9" height="8" fill="#c7a566"/>
+ </g>
+</svg>

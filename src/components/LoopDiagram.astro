@@ -1,0 +1,194 @@
+<figure class="loop-figure">
+  <svg
+    class="loop"
+    viewBox="0 0 720 300"
+    role="img"
+    aria-label="A car sends camera frames through a phone to an off-board model, which sends steering and throttle commands back to the car."
+  >
+    <defs>
+      <marker
+        id="loop-arrow"
+        viewBox="0 0 6 6"
+        refX="5"
+        refY="3"
+        markerWidth="5"
+        markerHeight="5"
+        orient="auto-start-reverse"
+      >
+        <path d="M0 0 L6 3 L0 6 z" fill="currentColor" />
+      </marker>
+    </defs>
+
+    <!-- wires: frames out on top, commands back on the bottom -->
+    <g class="loop-wires">
+      <path class="wire wire-flow" d="M150 118 H300" marker-end="url(#loop-arrow)" />
+      <path class="wire wire-flow" d="M420 118 H570" marker-end="url(#loop-arrow)" />
+      <path class="wire wire-flow" d="M570 182 H420" marker-end="url(#loop-arrow)" />
+      <path class="wire wire-flow" d="M300 182 H150" marker-end="url(#loop-arrow)" />
+    </g>
+
+    <!-- packets slide under the nodes -->
+    <g class="loop-packets">
+      <circle class="packet" r="2.6">
+        <animateMotion dur="5.5s" repeatCount="indefinite" path="M150 118 H570" />
+      </circle>
+      <circle class="packet" r="2.6">
+        <animateMotion dur="6.5s" begin="-2s" repeatCount="indefinite" path="M570 182 H150" />
+      </circle>
+    </g>
+
+    <!-- car -->
+    <g class="node-car" transform="translate(100 150)">
+      <rect class="node" x="-24" y="-38" width="48" height="76" rx="10" />
+      <rect class="node" x="-17" y="-27" width="34" height="15" rx="3" />
+      <rect class="wheel wheel-front" x="-31" y="-29" width="7" height="18" rx="2" />
+      <rect class="wheel wheel-front" x="24" y="-29" width="7" height="18" rx="2" />
+      <rect class="wheel" x="-31" y="11" width="7" height="18" rx="2" />
+      <rect class="wheel" x="24" y="11" width="7" height="18" rx="2" />
+      <circle class="lens" cx="0" cy="-33" r="3" />
+      <rect class="lamp" x="-14" y="-38" width="6" height="2" />
+      <rect class="lamp" x="8" y="-38" width="6" height="2" />
+    </g>
+
+    <!-- phone -->
+    <g class="node-phone" transform="translate(360 150)">
+      <rect class="node" x="-20" y="-38" width="40" height="76" rx="9" />
+      <rect class="node" x="-14" y="-27" width="28" height="52" rx="2" />
+      <line class="node" x1="-6" y1="-33" x2="6" y2="-33" />
+      <line class="node" x1="-5" y1="31" x2="5" y2="31" />
+    </g>
+
+    <!-- off-board model -->
+    <g class="node-model" transform="translate(620 150)">
+      <rect class="node" x="-28" y="-28" width="56" height="56" rx="4" />
+      <rect class="node" x="-13" y="-13" width="26" height="26" rx="2" />
+      <path
+        class="node"
+        d="M-34 -14 h6 M-34 0 h6 M-34 14 h6 M28 -14 h6 M28 0 h6 M28 14 h6 M-14 -34 v6 M0 -34 v6 M14 -34 v6 M-14 28 v6 M0 28 v6 M14 28 v6"
+      />
+    </g>
+
+    <g class="loop-labels">
+      <text x="100" y="232">car</text>
+      <text x="360" y="232">phone</text>
+      <text x="620" y="232">off-board model</text>
+      <text x="225" y="104">frames</text>
+      <text x="495" y="206">commands</text>
+    </g>
+  </svg>
+
+  <figcaption>
+    Frames leave the car, commands come back. The model never touches the car.
+  </figcaption>
+</figure>
+
+<style>
+  .loop-figure {
+    margin: 1.75rem 0;
+    padding: 1.35rem 1rem 1rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--paper-2);
+  }
+
+  .loop {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: var(--muted);
+  }
+
+  .node {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.25;
+    stroke-linecap: round;
+  }
+
+  .wheel {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.25;
+  }
+
+  .wheel-front {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .lens {
+    fill: var(--accent);
+  }
+
+  .lamp {
+    fill: currentColor;
+  }
+
+  .wire {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1;
+    stroke-dasharray: 3 8;
+    opacity: 0.6;
+  }
+
+  .packet {
+    fill: var(--accent);
+  }
+
+  .loop-labels text {
+    fill: var(--faint);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1.6px;
+    text-anchor: middle;
+    text-transform: uppercase;
+  }
+
+  .loop-labels text:nth-child(4),
+  .loop-labels text:nth-child(5) {
+    fill: var(--muted);
+    font-size: 9px;
+    letter-spacing: 1.2px;
+  }
+
+  figcaption {
+    margin-top: 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+    color: var(--faint);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .wire-flow {
+      animation: wire 1.6s linear infinite;
+    }
+
+    @keyframes wire {
+      to {
+        stroke-dashoffset: -11;
+      }
+    }
+
+    .wheel-front {
+      animation: steer 4.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes steer {
+      from {
+        transform: rotate(-7deg);
+      }
+      to {
+        transform: rotate(7deg);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .packet {
+      display: none;
+    }
+  }
+</style>

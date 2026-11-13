@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 85">
+ <defs>
+  <linearGradient id="shaft" x2="0" y2="1"><stop stop-color="#838c8e"/><stop offset=".25" stop-color="#e1e4df"/><stop offset=".5" stop-color="#c0c7c8"/><stop offset="1" stop-color="#606a6b"/></linearGradient>
+  <linearGradient id="handle" x2="0" y2="1"><stop stop-color="#bb6444"/><stop offset=".25" stop-color="#e8a071"/><stop offset=".5" stop-color="#be623d"/><stop offset="1" stop-color="#743e2b"/></linearGradient>
+ </defs>
+ <path d="M20 34L41 30H279V44H41L20 40Z" fill="url(#shaft)" stroke="#7d8683"/>
+ <path d="M259 22L280 20L293 25H416Q439 26 439 38Q439 51 416 53H293L280 58L259 55Z" fill="url(#handle)" stroke="#7b4c36"/>
+ <path d="M298 29H415M298 46H415" stroke="#5b382c" stroke-width="4" stroke-linecap="round"/>
+ <path d="M296 33H418" stroke="#f8c290" opacity=".65" stroke-width="2"/>
+ <path d="M267 27V51M278 25V52" stroke="#d59a6e" stroke-width="2"/>
+</svg>

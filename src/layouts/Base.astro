@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import '../styles/personal-scene.css';
+import '../styles/scrapbook.css';
+
+interface Props {
+  title: string;
+  description: string;
+  bench?: boolean;
+}
+const { title, description, bench = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
+  </head>
+  <body class:list={[bench ? 'bench-page' : 'document-page']}>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="signature" href="/" aria-label="Kartik Tagore — home">kartik tagore</a>
+    </header>
+    <main id="main" class:list={[bench ? 'bench-stage' : 'document-stage']}>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div><a href="https://sravjti.in/" target="_blank" rel="noopener noreferrer">SRA · VJTI, Mumbai ↗</a><a href="https://github.com/kt-fr" rel="me noopener noreferrer" target="_blank">GitHub ↗</a><a href="mailto:kartiktagorekt@gmail.com" target="_blank" rel="noopener noreferrer">Contact me ↗</a></div>
+    </footer>
+    <script>
+      import { initBench } from '../scripts/bench';
+      initBench();
+    </script>
+  </body>
+</html>

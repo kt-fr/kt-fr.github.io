@@ -1,0 +1,20 @@
+{
+  "name": "kartik-tagore-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "node scripts/check.mjs",
+    "assets:photos": "python3 scripts/prepare-photo-props.py",
+    "assets:curated": "python3 scripts/prepare-curated-art.py"
+  },
+  "dependencies": {
+    "astro": "^7.4.10"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.65.0"
+  }
+}

@@ -1,0 +1,14 @@
+:root {
+  color-scheme: light;
+  --ink: #292d29;
+  --muted: #5b6057;
+  --faint: #656960;
+  --paper: #f7f5eb;
+  --paper-2: #eceae0;
+  --rule: #c6c8bb;
+  --accent: #a34432;
+  --radius: 0;
+  --font-sans: 'Inter', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-hand: 'Instrument Serif', Georgia, serif;
+}

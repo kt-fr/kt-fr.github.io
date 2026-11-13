@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 340">
+ <defs><linearGradient id="plastic" x2="1" y2=".3"><stop stop-color="#7f991e"/><stop offset=".3" stop-color="#daee4f"/><stop offset=".65" stop-color="#c6e82b"/><stop offset="1" stop-color="#8aa827"/></linearGradient><linearGradient id="cork" x2="1" y2="0"><stop stop-color="#a3a779"/><stop offset=".4" stop-color="#f2f2cf"/><stop offset="1" stop-color="#afb78a"/></linearGradient><clipPath id="skirt"><path d="M20 27Q104 -5 190 27L131 240H79Z"/></clipPath></defs>
+ <path d="M20 27Q104 -5 190 27L131 240H79Z" fill="url(#plastic)" stroke="#81951d" stroke-width="2"/>
+ <g clip-path="url(#skirt)" fill="none" stroke="#6f891e" stroke-width="2" opacity=".8"><path d="M31 24L82 235M53 16L89 235M78 11L97 235M104 8V239M130 10L113 235M154 16L120 235M178 22L127 235"/><path d="M17 46Q105 16 193 46M26 72Q105 45 184 72M33 98Q105 74 177 98M40 125Q105 104 170 125M48 152Q105 133 162 152M55 178Q105 161 155 178M63 202Q105 188 147 202M70 222Q105 213 140 222"/></g>
+ <path d="M20 27Q104 -5 190 27" fill="none" stroke="#e2f464" stroke-width="7"/>
+ <path d="M80 236H130L132 280Q128 312 105 314Q82 312 78 280Z" fill="url(#cork)" stroke="#919a6e"/>
+ <path d="M79 242H131V254H79Z" fill="#47765e"/><path d="M83 261L86 287M89 263L91 295M119 261L117 295" stroke="#747f57" opacity=".2"/>
+</svg>
