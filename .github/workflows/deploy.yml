@@ -1,23 +1,70 @@
-name: Publish personal website
+name: Deploy personal site
 on:
   push:
     branches: [main]
   workflow_dispatch:
+
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out website
         uses: actions/checkout@v6
-      - name: Build Astro site and upload Pages artifact
-        uses: withastro/action@v6
+      - name: Set up pnpm for one-time source migration
+        if: ${{ hashFiles('package.json') != '' }}
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.2
+      - name: Set up Node for one-time source migration
+        if: ${{ hashFiles('package.json') != '' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and convert Astro source to static site (one time only)
+        if: ${{ hashFiles('package.json') != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          pnpm install --frozen-lockfile
+          pnpm build
+          test -s dist/index.html
+          test -s dist/404.html
+          test -s dist/credits/index.html
+          test -s dist/work/mcqueen/index.html
+          test -d dist/_astro
+          test -s dist/img/bench/paper/arduino-uno.webp
+          test -s dist/img/bench/paper/mcqueen.webp
+          test "$(find dist -type f | wc -l)" -ge 25
+          
+          git fetch origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" || { echo "Remote main changed; stopping safely"; exit 1; }
+          
+          static_dir="$(mktemp -d)"
+          cp -a dist/. "$static_dir/"
+          git rm -r -q -- .
+          git restore --source=HEAD --staged --worktree -- .github/workflows/deploy.yml
+          mkdir -p site
+          cp -a "$static_dir/." site/
+          git add -- site
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Publish static-only website files'
+          git push origin HEAD:main
+          echo "Static files now committed to site/; original source remains in prior git history and on your computer."
+      - name: Upload the finished static site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./site
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -25,6 +72,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Publish to Pages
+      - name: Deploy static files
         id: deployment
         uses: actions/deploy-pages@v5
