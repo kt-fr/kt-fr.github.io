@@ -1,25 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import BenchPanel from '../components/BenchPanel.astro';
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
-// Prefer vetted human-created illustrations for sports props and real photo
-// cutouts for hardware/dumbbells/chess where they have been downloaded.
-const hasArt = (kind: string, name: string, extension: string) => existsSync(join(process.cwd(), 'public', 'img', 'bench', kind, `${name}.${extension}`));
-const localArt = (name: string, preference: 'photo' | 'illustration' = 'illustration') => {
-  if (hasArt('paper', name, 'webp')) return `/img/bench/paper/${name}.webp`;
-  if (hasArt('curated', name, 'png')) return `/img/bench/curated/${name}.png`;
-  const vector = hasArt('curated', name, 'svg') ? `/img/bench/curated/${name}.svg` : null;
-  const photo = hasArt('photos', name, 'webp') ? `/img/bench/photos/${name}.webp` : null;
-  return preference === 'photo' ? photo || vector || `/img/bench/${name}.svg` : vector || photo || `/img/bench/${name}.svg`;
-};
+const localArt = (name: string) => `/img/bench/paper/${name}.webp`;
 const sports = [
-  { class: 'dumbbells', asset: 'dumbbells', preference: 'illustration' as const, label: 'Pair of dumbbells', width: 560, height: 370 },
+  { class: 'dumbbells', asset: 'dumbbells', label: 'Pair of dumbbells', width: 560, height: 370 },
   { class: 'football', asset: 'football', label: 'Football', width: 330, height: 330 },
   { class: 'helmet', asset: 'helmet', label: 'Motorcycle helmet', width: 512, height: 512 },
   { class: 'volleyball', asset: 'volleyball', label: 'Volleyball', width: 330, height: 330 },
   { class: 'shuttle', asset: 'shuttle', label: 'Badminton shuttlecock', width: 210, height: 340 },
-  { class: 'knight', asset: 'knight', preference: 'photo' as const, label: 'Chess knight', width: 220, height: 350 },
+  { class: 'knight', asset: 'knight', label: 'Chess knight', width: 220, height: 350 },
   { class: 'paddles', asset: 'paddles', label: 'Table-tennis paddle', width: 360, height: 360 },
 ];
 ---
@@ -41,7 +30,7 @@ const sports = [
 
     {sports.map((sport) => (
       <a class:list={['bench-object', 'sport-object', sport.class]} data-prop={sport.class} href="#away" data-panel="away" data-interest={sport.class} aria-label={`${sport.label} — away from the bench`}>
-        <span class="cut-paper"><img src={localArt(sport.asset, sport.preference ?? 'illustration')} width={sport.width} height={sport.height} alt={sport.label} /></span>
+        <span class="cut-paper"><img src={localArt(sport.asset)} width={sport.width} height={sport.height} alt={sport.label} /></span>
       </a>
     ))}
 
@@ -103,16 +92,6 @@ const sports = [
       <p>I'm a second-year student at VJTI, building with SRA in Mumbai. I like robots, hardware, software, and figuring out how things work.</p>
       <p>When I'm not building something, I'm probably at the gym, on the turf playing something like football or volleyball, out for a bike ride, playing chess, or taking a completely random walk.</p>
       <p class="interest-highlight" data-interest-note hidden aria-live="polite"></p>
-    </BenchPanel>
-    <BenchPanel id="sac" title="SAC maze bot">
-      <p>Autonomous maze-solving with custom ESP32 firmware. Motor control, line sensing, and a decision loop without an operating system underneath.</p>
-      <p class="panel-meta">C · ESP-IDF · control loops</p>
-    </BenchPanel>
-    <BenchPanel id="mcqueen-notes" title="From a camera to a policy">
-      <p>We started with an RC car and built toward autonomous driving. The onboard Jetson connects the camera and motors to a model running off-board.</p>
-      <p>Camera frames go out over the network. Steering and throttle come back. The computer running inference is elsewhere—not another board tucked inside the car.</p>
-      <a class="text-link" href="/work/mcqueen/" target="_blank" rel="noopener noreferrer">Explore McQueen ↗</a>
-      <a class="text-link" href="https://blog.sravjti.in/2026/10/20/mcqueen.html" target="_blank" rel="noopener noreferrer">Read the build story ↗</a>
     </BenchPanel>
   </div>
 </Base>

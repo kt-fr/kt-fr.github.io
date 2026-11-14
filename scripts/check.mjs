@@ -140,7 +140,7 @@ try {
         expect((await page.locator('#away .panel-content').innerText()).includes('on the turf playing something like football or volleyball'), `${label}: off-duty wording incorrect`);
         expect(!(await page.locator('#away .panel-content').innerText()).includes("And I'm always up for badminton or a game of table tennis."), `${label}: deleted sentence remains`);
         expect(await page.locator('a[href="/about/"], .intro-about').count() === 0, `${label}: deleted About page link remains`);
-        expect(await page.locator('.bench-panel').evaluateAll((els) => els.length === 4 && els.every((e) => getComputedStyle(e).backgroundImage.includes('paper-grain.png') && getComputedStyle(e, '::before').content !== 'none')), `${label}: panels lost sticky-note paper/tape styling`);
+        expect(await page.locator('.bench-panel').evaluateAll((els) => els.length === 2 && els.every((e) => getComputedStyle(e).backgroundImage.includes('paper-grain.png') && getComputedStyle(e, '::before').content !== 'none')), `${label}: panels lost sticky-note paper/tape styling`);
         for (const [selector, id] of [['.notebook', 'now'], ['.jetson', 'away'], ['.screwdriver', 'away'], ['.uno-info','away'], ...['dumbbells', 'football', 'helmet', 'volleyball', 'shuttle', 'knight', 'paddles'].map((name) => ['.' + name, 'away'])]) {
           const trigger = page.locator(selector);
           await trigger.click({ timeout:5000 });
@@ -219,7 +219,7 @@ try {
       await page.goto(BASE + path, { waitUntil: 'networkidle' });
       await inspect(page, `no-js/${name}@${width}`);
       if (name === 'home') {
-        expect(await page.locator('dialog[open]').count() === 4, `no-js@${width}: content missing`);
+        expect(await page.locator('dialog[open]').count() === 2, `no-js@${width}: content missing`);
         expect(await page.locator('[data-greeting]').textContent() === 'Hi', 'no-JS greeting fallback missing');
         expect(await page.locator('[data-panel-close]:visible').count() === 0, 'no-js: inert controls visible');
         expect(await page.locator('.uno-controls:visible,.scene-controls:visible').count() === 0, 'no-js: inert scene controls visible');
